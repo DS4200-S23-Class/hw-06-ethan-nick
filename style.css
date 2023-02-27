@@ -1,0 +1,28 @@
+body {
+    font-family: Arial; 
+}
+li {
+    font-size: 14px;
+}
+
+.bold {
+    font-weight: bold;
+}
+.centered {
+    text-align: center;
+}
+
+/* style for flexbox
+    box = parent, item=child */
+
+.box{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+}
+.item{
+    display: inline-flex;
+    flex-direction:column;
+    justify-content: top;
+}
