@@ -96,7 +96,8 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
       })
       .on("mouseout", function() {
           d3.select(this)
-            .attr("stroke", "none");
+            .attr("stroke", "none")
+            .attr("fill-opacity", 0.5);
       });
       
   var brush = d3.brush()
