@@ -13,14 +13,14 @@ var svg = d3.select("#left")
 d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/master/data/iris.csv", function(data) {
 
   var x = d3.scaleLinear()
-    .domain([0, 7.0])
+    .domain([0, 8])
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
 
   var y = d3.scaleLinear()
-    .domain([0, 8])
+    .domain([0, 7.0])
     .range([ height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
