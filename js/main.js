@@ -93,4 +93,4 @@ svg2.selectAll("mybar")
         } else {
             return "rgba(255, 176, 0, 0.5)"; // virginica color with 50% opacity
         }
-    });
+});
