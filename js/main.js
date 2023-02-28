@@ -85,6 +85,7 @@ svg2.selectAll("mybar")
     .attr("y", 50)
     .attr("width", xx.bandwidth())
     .attr("height", function(d) { return height - 50; })
+    .attr("fill-opacity", 0.5)
     .attr("fill", function(d) {
       if (d.Species === "setosa") {
         return "#DC267F";
