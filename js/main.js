@@ -62,17 +62,17 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
   var xxx = d3.scaleLinear()
     .domain([0, 5.0])
     .range([ 0, width ]);
-  svg.append("g")
+  svg3.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(xxx));
 
   var yyy = d3.scaleLinear()
     .domain([0, 3.0])
     .range([ height, 0]);
-  svg.append("g")
+  svg3.append("g")
     .call(d3.axisLeft(yyy));
 
-  var circles = svg.append('g')
+  var circles = svg3.append('g')
   	.attr("id", "plane")
     .selectAll("point")
     .data(data)
