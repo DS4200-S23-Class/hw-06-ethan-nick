@@ -2,7 +2,7 @@ var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
-var svg = d3.select("#dataviz1")
+var svg = d3.select("#my_dataviz")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -42,5 +42,36 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-05-hw05-nick-ethan
   var selectedCircles = circles.filter(".selected");
   var coords = d3.select("#coords");
 
+  circles
+  .on("mousemove", function(d) {
+      d3.select(this)
+          .style("cursor", "pointer")
+          .style("fill", "orange");
+   	})
+   
+  .on("mouseout", function(d) {
+      d3.select(this)
+        .style("cursor", "default")
+        .style("fill", "steelblue");
+    })
+      
+  .on("click", function(d) {
+      var selectedCircle = d3.select(this);
+      var isSelected = selectedCircle.classed("selected");
+      selectedCircle.classed("selected", !isSelected);
+      coords.text("(" + d.x + ", " + d.y + ")");
+  
+  // toggle stroke color and width
+      if (isSelected) {
+          selectedCircle
+              .style("stroke", null)
+              .style("stroke-width", null);
+      } else {
+          selectedCircle
+              .style("stroke", "black")
+              .style("stroke-width", "7px");
+      }
+
+      });
       
 })
