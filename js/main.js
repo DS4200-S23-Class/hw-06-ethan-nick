@@ -43,7 +43,8 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
         } else if (d.Species === "virginica") {
             return "#FFB000";
         }
-      });
+      })
+  });
 
 var svg3 = d3.select("#middle")
   .append("svg")
