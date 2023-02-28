@@ -60,8 +60,8 @@ var svg2 = d3.select("#dataviz3")
 d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/master/data/iris.csv", function(bardata) {
 
 var xx = d3.scaleBand()
-  .range([ 0, width])
-  .domain(bardata.map(function(d) { return d.Species; }))
+  .range([0, width])
+  .domain(["virginica", "versicolor", "setosa"])
   .padding(0.2);
 svg2.append("g")
   .attr("transform", "translate(0," + height + ")")
@@ -72,10 +72,9 @@ svg2.append("g")
 
 var yy = d3.scaleLinear()
   .domain([0, 60])
-  .range([ height, 0]);
+  .range([height, 0]);
 svg2.append("g")
   .call(d3.axisLeft(yy));
-    
 
 svg2.selectAll("mybar")
   .data(bardata)
@@ -84,7 +83,7 @@ svg2.selectAll("mybar")
     .attr("x", function(d) { return xx(d.Species); })
     .attr("y", 50)
     .attr("width", xx.bandwidth())
-    .attr("height", function(d) { return height - yy(d.id); })
+    .attr("height", function(d) { return height - 50; })
     .attr("fill", "steelblue")
 
 })
