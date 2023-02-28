@@ -43,14 +43,7 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
         } else if (d.Species === "virginica") {
             return "#FFB000";
         }
-
-    svg
-    .call( d3.brush()                 // Add the brush feature using the d3.brush function
-      .extent( [ [0,0], [width,height] ] ) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-      .on("start brush", updateChart) // Each time the brush selection changes, trigger the 'updateChart' function
-    )
         });
-
 });
 
 
