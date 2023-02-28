@@ -151,8 +151,8 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
       circles.attr("stroke", "none");
       var [[x0, y0], [x1, y1]] = d3.event.selection;
       circles.filter(function(d) {
-        var cx = x(d.Sepal_Length);
-        var cy = y(d.Petal_Length);
+        var cx = xxx(d.Sepal_Width);
+        var cy = yyy(d.Petal_Width);
         var selected = (cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1);
         if (selected) {
           selectedPoints.push(this);
