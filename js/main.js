@@ -44,6 +44,36 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
             return "#FFB000";
         }
         });
+    
+  // Add brushing feature to the scatter plot
+  var brush = d3.brush()
+    .extent([[0, 0], [width, height]])
+    .on("start brush end", updateChart);
+
+  svg.append("g")
+    .call(brush);
+
+  function updateChart(event) {
+    if (!event.selection) return;
+
+    // Get the x and y ranges of the brush selection
+    var [[x0, y0], [x1, y1]] = event.selection;
+
+    // Filter the data points based on the brush selection
+    var selectedData = data.filter(function(d) {
+      return x(d.Sepal_Length) >= x0 && x(d.Sepal_Length) <= x1 &&
+             y(d.Petal_Length) >= y0 && y(d.Petal_Length) <= y1;
+    });
+
+    // Update the fill color of the selected data points
+    circles.attr("fill", function(d) {
+      if (selectedData.includes(d)) {
+        return "#EF476F";
+      } else if (d.Species === "setosa") {
+        return "#DC267F";
+      } else if (d.Species === "versicolor") {
+        return "#FE6100";
+      } else if (d.Species
 });
 
 
