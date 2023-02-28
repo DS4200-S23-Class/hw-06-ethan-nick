@@ -44,6 +44,33 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
             return "#FFB000";
         }
         });
+  var brush = d3.brush()
+    .extent([[0, 0], [width, height]])
+    .on("brush", brushed)
+    .on("end", brushend);
+  
+  svg.append("g")
+    .attr("class", "brush")
+    .call(brush);
+  
+  function brushed() {
+    var selection = d3.event.selection;
+    circles.attr("class", function(d) {
+      var xvalue = x(d.Sepal_Length);
+      var yvalue = y(d.Petal_Length);
+      return selection[0][0] <= xvalue && xvalue <= selection[1][0]
+          && selection[0][1] <= yvalue && yvalue <= selection[1][1] ?
+          "selected" : null;
+    });
+  }
+  
+  function brushend() {
+    var selection = d3.event.selection;
+    if (!selection) {
+      circles.attr("class", null);
+    }
+  }
+ 
 });
 
 
