@@ -156,27 +156,4 @@ svg2.selectAll("mybar")
     .attr("height", function(d) { return height - yy(d.amount); })
     .attr("fill", "steelblue")
     
-    .on("mousemove", function(d) {
-      d3.select(this)
-          .attr("title", d.amount)
-          .style("cursor", "pointer")
-          .style("fill", "orange");
-      d3.select("#tooltip")
-          .style("left", (d3.event.pageX + 10) + "px")
-          .style("top", (d3.event.pageY - 10) + "px")
-          .style("position", "absolute")
-          .style("background-color", "white")
-          .html("Category: " + d.category + "<br/>Value: " + d.amount);
-
-    })
-    .on("mouseout", function(d) {
-      d3.select(this)
-        .attr("title", d.amount)
-        .style("cursor", "default")
-        .style("fill", "steelblue");
-      d3.select("#tooltip")
-        .style("left", "-9999px")
-        .style("top", "-9999px");
-    });
-    
 })
