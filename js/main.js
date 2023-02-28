@@ -68,7 +68,8 @@ svg2.append("g")
   .call(d3.axisBottom(xx))
   .selectAll("text")
     .attr("transform", "translate(-10,0)rotate(-45)")
-    .style("text-anchor", "end");
+    .style("text-anchor", "end")
+    .style("font-style", "normal");
 
 var yy = d3.scaleLinear()
   .domain([0, 60])
