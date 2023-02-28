@@ -84,7 +84,14 @@ svg2.selectAll("mybar")
     .attr("y", 50)
     .attr("width", xx.bandwidth())
     .attr("height", function(d) { return height - 50; })
-    .attr("fill", "steelblue")
+    .attr("fill", function(d) {
+      if (d.Species === "setosa") {
+        return "#DC267F";
+      } else if (d.Species === "versicolor") {
+        return "#FE6100";
+      } else if (d.Species === "virginica") {
+        return "#FFB000";
+      }
+    })
 
 })
-
