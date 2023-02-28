@@ -82,10 +82,10 @@ svg2.selectAll("mybar")
   .enter()
   .append("rect")
     .attr("x", function(d) { return xx(d.Species); })
-    .attr("y", function(d) { return yy(d.id); })
+    .attr("y", 50)
     .attr("width", xx.bandwidth())
     .attr("height", function(d) { return height - yy(d.id); })
     .attr("fill", "steelblue")
-    
+
 })
 
