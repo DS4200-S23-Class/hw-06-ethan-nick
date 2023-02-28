@@ -43,34 +43,44 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
         } else if (d.Species === "virginica") {
             return "#FFB000";
         }
-        });
+      })
+      .attr("stroke", "none")
+      .on("mouseover", function() {
+          d3.select(this)
+            .attr("stroke", "#FFA500")
+            .attr("stroke-width", 2);
+      })
+      .on("mouseout", function() {
+          d3.select(this)
+            .attr("stroke", "none");
+      });
+      
   var brush = d3.brush()
     .extent([[0, 0], [width, height]])
-    .on("brush", brushed)
-    .on("end", brushend);
-  
+    .on("start brush end", brushed);
+
   svg.append("g")
     .attr("class", "brush")
     .call(brush);
-  
+
   function brushed() {
-    var selection = d3.event.selection;
-    circles.attr("class", function(d) {
-      var xvalue = x(d.Sepal_Length);
-      var yvalue = y(d.Petal_Length);
-      return selection[0][0] <= xvalue && xvalue <= selection[1][0]
-          && selection[0][1] <= yvalue && yvalue <= selection[1][1] ?
-          "selected" : null;
-    });
-  }
-  
-  function brushend() {
-    var selection = d3.event.selection;
-    if (!selection) {
-      circles.attr("class", null);
+    var selectedPoints = [];
+    if (d3.event.selection) {
+      circles.attr("stroke", "none");
+      var [[x0, y0], [x1, y1]] = d3.event.selection;
+      circles.filter(function(d) {
+        var cx = x(d.Sepal_Length);
+        var cy = y(d.Petal_Length);
+        var selected = (cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1);
+        if (selected) {
+          selectedPoints.push(this);
+        }
+        return selected;
+      }).attr("stroke", "#FFA500").attr("stroke-width", 2);
+    } else {
+      circles.attr("stroke", "none");
     }
   }
- 
 });
 
 
