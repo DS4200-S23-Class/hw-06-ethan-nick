@@ -78,8 +78,8 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
     .data(data)
     .enter()
     .append("circle")   	
-      .attr("cx", function (d) { return xxx(d.Petal_Width); } )
-      .attr("cy", function (d) { return yyy(d.Sepal_Width); } )
+      .attr("cx", function (d) { return xxx(d.Sepal_Width); } )
+      .attr("cy", function (d) { return yyy(d.Petal_Width); } )
       .attr("r", 5)
       .attr("fill-opacity", 0.5)
       .attr("fill", function(d) {
