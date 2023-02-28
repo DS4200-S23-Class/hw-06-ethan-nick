@@ -36,81 +36,11 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-05-hw05-nick-ethan
       .attr("r", 15)
       .style("fill", "steelblue")
 
-  var button = d3.select("#plotbutton")
-		button.on("click", function(d){
-		var newx = d3.select("#xdropdown").node().value;
-		var newy = d3.select("#ydropdown").node().value;
-		d3.select("#plane")
-		.append("circle")
-	      .attr("cx", function (d) { return x(newx); } )
-     	  .attr("cy", function (d) { return y(newy); } )
-	      .attr("r", 15)
-	      .style("fill", "steelblue")
-	      .on("mousemove", function(d) {
-      			d3.select(this)
-          		.style("cursor", "pointer")
-          		.style("fill", "orange");
-   			  })
-   			
-  		  .on("mouseout", function(d) {
-    		    d3.select(this)
-       			.style("cursor", "default")
-        		.style("fill", "steelblue");
-    		  })
-      
-  		  .on("click", function(d) {
-      			var selectedCircle = d3.select(this);
-      			var isSelected = selectedCircle.classed("selected");
-      			selectedCircle.classed("selected", !isSelected);
-     			coords.text("(" + newx + ", " + newy + ")");
-  
-  				// toggle stroke color and width
-			      if (isSelected) {
-			          selectedCircle
-			              .style("stroke", null)
-			              .style("stroke-width", null);
-			      } else {
-			          selectedCircle
-			              .style("stroke", "black")
-			              .style("stroke-width", "7px");
-			      }});
-
 });
 
 
   var selectedCircles = circles.filter(".selected");
   var coords = d3.select("#coords");
 
-  circles
-  .on("mousemove", function(d) {
-      d3.select(this)
-          .style("cursor", "pointer")
-          .style("fill", "orange");
-   	})
-   
-  .on("mouseout", function(d) {
-      d3.select(this)
-        .style("cursor", "default")
-        .style("fill", "steelblue");
-    })
-      
-  .on("click", function(d) {
-      var selectedCircle = d3.select(this);
-      var isSelected = selectedCircle.classed("selected");
-      selectedCircle.classed("selected", !isSelected);
-      coords.text("(" + d.x + ", " + d.y + ")");
-  
-  // toggle stroke color and width
-      if (isSelected) {
-          selectedCircle
-              .style("stroke", null)
-              .style("stroke-width", null);
-      } else {
-          selectedCircle
-              .style("stroke", "black")
-              .style("stroke-width", "7px");
-      }
-
-      });
       
 })
