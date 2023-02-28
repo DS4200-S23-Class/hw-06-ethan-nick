@@ -49,7 +49,7 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
 });
 
 
-var svg = d3.select("#middle")
+var svg3 = d3.select("#middle")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -59,18 +59,18 @@ var svg = d3.select("#middle")
 
 d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/master/data/iris.csv", function(data) {
 
-  var x = d3.scaleLinear()
+  var xxx = d3.scaleLinear()
     .domain([0, 5.0])
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(xxx));
 
-  var y = d3.scaleLinear()
+  var yyy = d3.scaleLinear()
     .domain([0, 3.0])
     .range([ height, 0]);
   svg.append("g")
-    .call(d3.axisLeft(y));
+    .call(d3.axisLeft(yyy));
 
   var circles = svg.append('g')
   	.attr("id", "plane")
@@ -78,8 +78,8 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
     .data(data)
     .enter()
     .append("circle")   	
-      .attr("cx", function (d) { return x(d.Petal_Width); } )
-      .attr("cy", function (d) { return y(d.Sepal_Width); } )
+      .attr("cx", function (d) { return xxx(d.Petal_Width); } )
+      .attr("cy", function (d) { return yyy(d.Sepal_Width); } )
       .attr("r", 5)
       .attr("fill-opacity", 0.5)
       .attr("fill", function(d) {
