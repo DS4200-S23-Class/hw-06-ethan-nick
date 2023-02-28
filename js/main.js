@@ -87,10 +87,12 @@ svg2.selectAll("mybar")
     .attr("height", function(d) { return height - 50; })
     .attr("fill", function(d) { // set fill color with 50% opacity
         if (d.Species === "setosa") {
-            return "rgba(220, 38, 127, 0.5)"; // setosa color with 50% opacity
-        } else if (d.Species === "versicolor") {
-            return "rgba(254, 97, 0, 0.5)"; // versicolor color with 50% opacity
-        } else {
-            return "rgba(255, 176, 0, 0.5)"; // virginica color with 50% opacity
-        }
-});
+        return "#DC267F";
+      } else if (d.Species === "versicolor") {
+        return "#FE6100";
+      } else if (d.Species === "virginica") {
+        return "#FFB000";
+      }
+    })
+
+})
