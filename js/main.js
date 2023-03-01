@@ -31,6 +31,7 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
     .data(data)
     .enter()
     .append("circle")   	
+      .attr("class", function (d) {return d.id;})
       .attr("cx", function (d) { return x(d.Sepal_Length); } )
       .attr("cy", function (d) { return y(d.Petal_Length); } )
       .attr("r", 5)
