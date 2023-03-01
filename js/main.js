@@ -45,7 +45,6 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
             return "#FFB000";
         }
       })
-  });
 
 var svg3 = d3.select("#middle")
   .append("svg")
@@ -54,8 +53,6 @@ var svg3 = d3.select("#middle")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
-
-d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/master/data/iris.csv", function(data) {
 
   var xxx = d3.scaleLinear()
     .domain([0, 5.0])
@@ -110,27 +107,41 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
     .attr("class", "brush")
     .call(brush);
 
+
   function brushed() {
+    // initialize list 
     var selectedPoints = [];
+
+    // reset all shapes to default
+    d3.selectAll("circle").attr("stroke", "none").attr("fill-opacity", 0.5);
+    d3.selectAll(`[id='bar']`).attr("stroke", "none").attr("opacity", 0.02);
+
+    // highlight selected points in middle plot
     if (d3.event.selection) {
-      circles.attr("stroke", "none");
       var [[x0, y0], [x1, y1]] = d3.event.selection;
       circles.filter(function(d) {
         var cx = xxx(d.Sepal_Width);
         var cy = yyy(d.Petal_Width);
         var selected = (cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1);
         if (selected) {
-          selectedPoints.push(d3.selectAll(function(d) { return this.getAttribute("class")}));
+          selectedPoints.push(this);
         }
         return selected;
       }).attr("stroke", "#785EF0").attr("stroke-width", 2).attr("fill-opacity", 1);
     } else {
       circles.attr("stroke", "none").attr("fill-opacity", 0.5);
-    }
+    };
+
+    // highlight linked points in other plots for each selected point
+    selectedPoints.forEach(function(current) {
+      linked = current.getAttribute("class");
+      d3.selectAll(`[class='${linked}']`)
+          .attr("stroke", "#785EF0")
+          .attr("stroke-width", 2)
+          .attr("fill-opacity", 1)
+          .attr("opacity", 1);
+    });
   }
-});
-
-
 
 var svg2 = d3.select("#right")
   .append("svg")
@@ -140,8 +151,6 @@ var svg2 = d3.select("#right")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/master/data/iris.csv", function(bardata) {
-
 var xx = d3.scaleBand()
   .range([0, width])
   .domain(["virginica", "versicolor", "setosa"])
@@ -150,8 +159,7 @@ svg2.append("g")
   .attr("transform", "translate(0," + height + ")")
   .call(d3.axisBottom(xx))
   .selectAll("text")
-    .attr("transform", "translate(-10,0)rotate(-45)")
-    .style("text-anchor", "end")
+    .style("text-anchor", "center")
     .style("font-style", "normal");
 
 var yy = d3.scaleLinear()
@@ -161,9 +169,11 @@ svg2.append("g")
   .call(d3.axisLeft(yy));
 
 svg2.selectAll("mybar")
-  .data(bardata)
+  .data(data)
   .enter()
   .append("rect")
+    .attr("id", "bar")
+    .attr("class", function (d) {return d.id;}) 
     .attr("x", function(d) { return xx(d.Species); })
     .attr("y", 50)
     .attr("width", xx.bandwidth())
@@ -178,5 +188,5 @@ svg2.selectAll("mybar")
         return "#FFB000";
       }
     })
-
 })
+

@@ -23,6 +23,7 @@ li {
 }
 .item{
     display: inline-flex;
+    flex:33%;
     flex-direction:column;
     justify-content: top;
 }
