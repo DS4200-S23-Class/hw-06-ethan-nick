@@ -177,7 +177,7 @@ svg2.selectAll("mybar")
     .attr("x", function(d) { return xx(d.Species); })
     .attr("y", 40)
     .attr("width", xx.bandwidth())
-    .attr("height", function(d) { return height - 50; })
+    .attr("height", function(d) { return height - 40; })
     .attr("opacity", 0.02)
     .attr("fill", function(d) { // set fill color with 50% opacity
         if (d.Species === "setosa") {
