@@ -75,7 +75,8 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
     .selectAll("point")
     .data(data)
     .enter()
-    .append("circle")   	
+    .append("circle")   
+      .attr("class", function (d) {return d.id;})	
       .attr("cx", function (d) { return xxx(d.Sepal_Width); } )
       .attr("cy", function (d) { return yyy(d.Petal_Width); } )
       .attr("r", 5)
@@ -119,16 +120,15 @@ d3.csv("https://raw.githubusercontent.com/DS4200-S23-Class/hw-06-ethan-nick/mast
         var cy = yyy(d.Petal_Width);
         var selected = (cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1);
         if (selected) {
-          selectedPoints.push(this);
+          selectedPoints.push(d3.selectAll(function(d) { return this.getAttribute("class")}));
         }
         return selected;
-      }).attr("stroke", "#FFA500").attr("stroke-width", 2);
+      }).attr("stroke", "#785EF0").attr("stroke-width", 2).attr("fill-opacity", 1);
     } else {
-      circles.attr("stroke", "none");
+      circles.attr("stroke", "none").attr("fill-opacity", 0.5);
     }
   }
 });
-
 
 
 
@@ -168,6 +168,7 @@ svg2.selectAll("mybar")
     .attr("y", 50)
     .attr("width", xx.bandwidth())
     .attr("height", function(d) { return height - 50; })
+    .attr("opacity", 0.02)
     .attr("fill", function(d) { // set fill color with 50% opacity
         if (d.Species === "setosa") {
         return "#DC267F";
